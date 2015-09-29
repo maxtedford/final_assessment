@@ -1,5 +1,7 @@
 class Driver < ActiveRecord::Base
   has_secure_password
+  has_many :rides
+  has_many :riders, through: :rides
   
   validates :name,
     presence: true

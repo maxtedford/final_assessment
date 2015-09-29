@@ -1,0 +1,14 @@
+<h1>Tell us about your ride:</h1>
+
+<%= form_for @ride do |f| %>
+  <%= f.label :pickup_location %>
+  <%= f.text_field :pickup_location %>
+  <br>
+  <%= f.label :dropoff_location %>
+  <%= f.text_field :dropoff_location %>
+  <br>
+  <%= f.label :number_of_passengers %>
+  <%= f.text_field :number_of_passengers %>
+  <br>
+  <%= f.submit "Request Ride" %>
+<% end %>

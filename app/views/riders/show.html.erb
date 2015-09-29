@@ -1,1 +1,15 @@
 <h1>Welcome, <%= current_rider.name %>!</h1>
+
+<% if current_rider.rides.where(status: "active").length == 0 %>
+  <%= link_to "Request a Ride", new_ride_path %>
+<% end %>
+
+<h2>Active Ride Requests:</h2>
+<div>
+  <% current_rider.rides.each do |ride| %>
+  <div>
+    <h4><%= ride.created_at %></h4>
+    <h5><%= ride.status %></h5>
+  </div>
+  <% end %>
+</div>

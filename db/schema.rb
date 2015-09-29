@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150929200704) do
+ActiveRecord::Schema.define(version: 20150929230544) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -37,4 +37,24 @@ ActiveRecord::Schema.define(version: 20150929200704) do
     t.datetime "updated_at",      null: false
   end
 
+  create_table "rides", force: :cascade do |t|
+    t.string   "pickup_location"
+    t.string   "dropoff_location"
+    t.integer  "number_of_passengers"
+    t.string   "status",               default: "active"
+    t.datetime "requested_time"
+    t.datetime "accepted_time"
+    t.datetime "pickup_time"
+    t.datetime "dropoff_time"
+    t.integer  "rider_id"
+    t.integer  "driver_id"
+    t.datetime "created_at",                              null: false
+    t.datetime "updated_at",                              null: false
+  end
+
+  add_index "rides", ["driver_id"], name: "index_rides_on_driver_id", using: :btree
+  add_index "rides", ["rider_id"], name: "index_rides_on_rider_id", using: :btree
+
+  add_foreign_key "rides", "drivers"
+  add_foreign_key "rides", "riders"
 end
