@@ -1,0 +1,27 @@
+<%= form_for driver do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+  <br>
+  <%= f.label :email %>
+  <%= f.text_field :email %>
+  <br>
+  <%= f.label :phone_number %>
+  <%= f.text_field :phone_number %>
+  <br>
+  <%= f.label :password %>
+  <%= f.password_field :password %>
+  <br>
+  <%= f.label :password_confirmation %>
+  <%= f.password_field :password_confirmation %>
+  <br>
+  <%= f.label :car_make %>
+  <%= f.text_field :car_make %>
+  <br>
+  <%= f.label :car_model %>
+  <%= f.text_field :car_model %>
+  <br>
+  <%= f.label :car_capacity %>
+  <%= f.text_field :car_capacity %>
+  <br>
+  <%= f.submit %>
+<% end %>
