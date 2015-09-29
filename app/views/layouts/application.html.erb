@@ -8,7 +8,14 @@
 </head>
 <body>
 
-<%= link_to "Login", login_path %>
+<% if current_rider %>
+  <%= link_to "Logout", rider_logout_path, method: :delete %>
+<% elsif current_driver %>
+  <%= link_to "Logout", driver_logout_path, method: :delete %>
+<% else %>
+  <%= link_to "Login as Rider", rider_login_path %>
+  <%= link_to "Login as Driver", driver_login_path%>
+<% end %>
 
 <%= yield %>
 
