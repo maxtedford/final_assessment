@@ -1,8 +1,20 @@
-<h3>Current Ride:</h3>
-<p><%= current_driver.current_ride.pickup_location %></p>
-<p><%= current_driver.current_ride.status %></p>
-<% if current_driver.current_ride.status == "accepted" %>
-  <%= link_to "Pick up Rider", ride_path(current_driver.current_ride), method: :put %>
-<% elsif current_driver.current_ride.status == "picked up" %>
-  <%= link_to "Complete Ride", ride_path(current_driver.current_ride), method: :put %>
-<% end %>
+<div id="current-ride">
+  <h3>Current Ride:</h3>
+  <%= current_driver.current_ride.pickup_location %>
+  <br>
+  to
+  <br>
+  <%= current_driver.current_ride.dropoff_location %>
+  <br>
+  <div id="current-ride-status">
+    Ride Status: <%= current_driver.current_ride.status %>
+  </div>
+  <br>
+  <div id="current-ride-button">
+    <% if current_driver.current_ride.status == "accepted" %>
+      <%= link_to "Pick up Rider", ride_path(current_driver.current_ride), method: :put, class: "btn btn-default btn-md" %>
+    <% elsif current_driver.current_ride.status == "picked up" %>
+      <%= link_to "Complete Ride", ride_path(current_driver.current_ride), method: :put, class: "btn btn-default btn-md" %>
+    <% end %>
+  </div>
+</div>

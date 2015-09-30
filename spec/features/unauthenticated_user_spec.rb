@@ -55,7 +55,7 @@ RSpec.describe "unauthenticated user", type: :feature do
       fill_in "rider[phone_number]", with: 1234567890
       fill_in "rider[password]", with: "password"
       fill_in "rider[password_confirmation]", with: "password"
-      click_button "Create Rider"
+      click_button "Sign Up"
       
       expect(page).to have_content("Rider McGee")
     end
@@ -70,7 +70,7 @@ RSpec.describe "unauthenticated user", type: :feature do
       fill_in "rider[phone_number]", with: 1234567890
       fill_in "rider[password]", with: "password"
       fill_in "rider[password_confirmation]", with: "password"
-      click_button "Create Rider"
+      click_button "Sign Up"
       
       expect(current_path).to eq(riders_path)
       expect(page).to have_content("Email has already been taken")
@@ -85,7 +85,7 @@ RSpec.describe "unauthenticated user", type: :feature do
       fill_in "rider[phone_number]", with: 1234567890
       fill_in "rider[password]", with: "password"
       fill_in "rider[password_confirmation]", with: "spazzword"
-      click_button "Create Rider"
+      click_button "Sign Up"
       
       expect(current_path).to eq(riders_path)
       expect(page).to have_content("Password confirmation doesn't match Password")
@@ -150,7 +150,7 @@ RSpec.describe "unauthenticated user", type: :feature do
       fill_in "driver[car_make]", with: "Honda"
       fill_in "driver[car_model]", with: "Civic"
       fill_in "driver[car_capacity]", with: 3
-      click_button "Create Driver"
+      click_button "Sign Up"
       
       expect(page).to have_content("Welcome, Driver McGee")
     end
@@ -168,7 +168,7 @@ RSpec.describe "unauthenticated user", type: :feature do
       fill_in "driver[car_make]", with: "Honda"
       fill_in "driver[car_model]", with: "Civic"
       fill_in "driver[car_capacity]", with: 3
-      click_button "Create Driver"
+      click_button "Sign Up"
       
       expect(current_path).to eq(drivers_path)
       expect(page).to have_content("Email has already been taken")
@@ -186,7 +186,7 @@ RSpec.describe "unauthenticated user", type: :feature do
       fill_in "driver[car_make]", with: "Honda"
       fill_in "driver[car_model]", with: "Civic"
       fill_in "driver[car_capacity]", with: 3
-      click_button "Create Driver"
+      click_button "Sign Up"
 
       expect(current_path).to eq(drivers_path)
       expect(page).to have_content("Password confirmation doesn't match Password")

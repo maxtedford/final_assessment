@@ -1,20 +1,22 @@
+<div id="active-ride-requests">
 <h2>Active Ride Requests:</h2>
 <div id="active-rides">
   <% current_rider.active_rides.each do |ride| %>
-    <div>
-      <h4>Requested Time: <%= convert_to_readable(ride.created_at) %></h4>
+    <div class="active-ride-info">
+      Requested Time: <%= convert_to_readable(ride.created_at) %>
       <br>
-      <h4>Ride Status: <%= ride.status %></h4>
+      Ride Duration: <%= pluralize(ride.time_in_minutes, "minute") %>
       <br>
-      <h4>Ride Duration: <%= pluralize(ride.time_in_minutes, "minute") %></h4>
+      Ride Distance: <%= pluralize(ride.mileage, "mile") %>
       <br>
-      <h4>Ride Distance: <%= pluralize(ride.mileage, "mile") %></h4>
-      <br>
-      <h4>Estimated Cost: <%= number_to_currency(ride.estimated_cost) %></h4>
+      Estimated Cost: <%= number_to_currency(ride.estimated_cost) %>
       <% if ride.driver %>
         <br>
-        <h4>Your Driver: <%= ride.driver.name %> (<%= ride.driver.car_make %> <%= ride.driver.car_model %>)</h4>
+        Your Driver: <%= ride.driver.name %> (<%= ride.driver.car_make %> <%= ride.driver.car_model %>)
       <% end %>
+      <br>
+      Ride Status: <%= ride.status %>
     </div>
   <% end %>
+</div>
 </div>

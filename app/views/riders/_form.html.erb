@@ -1,39 +1,37 @@
-<form class="form-horizontal">
-  <%= form_for rider do |f| %>
-    <div class="form-group">
-      <%= f.label :name, class: "col-sm-2 control-label" %>
-      <div class="col-sm-10">
-        <%= f.text_field :name, class: "form-control", placeholder: "Name" %>
-      </div>
+<%= form_for rider do |f| %>
+  <div class="form-group">
+    <%= f.label :name, class: "col-sm-2 control-label" %>
+    <div class="col-sm-10">
+      <%= f.text_field :name, class: "form-control", placeholder: "Name" %>
     </div>
-    <div class="form-group">
-      <%= f.label :email, class: "col-sm-2 control-label" %>
-      <div class="col-sm-10">
-        <%= f.text_field :email, class: "form-control", placeholder: "Email" %>
-      </div>
+  </div>
+  <div class="form-group">
+    <%= f.label :email, class: "col-sm-2 control-label" %>
+    <div class="col-sm-10">
+      <%= f.text_field :email, class: "form-control", placeholder: "Email" %>
     </div>
-    <div class="form-group">
-      <%= f.label :phone_number, class: "col-sm-2 control-label" %>
-      <div class="col-sm-10">
-        <%= f.text_field :phone_number, class: "form-control", placeholder: "Phone Number" %>
-      </div>
+  </div>
+  <div class="form-group">
+    <%= f.label :phone_number, class: "col-sm-2 control-label" %>
+    <div class="col-sm-10">
+      <%= f.text_field :phone_number, class: "form-control", placeholder: "Phone Number" %>
     </div>
-    <div class="form-group">
-      <%= f.label :password, class: "col-sm-2 control-label" %>
-      <div class="col-sm-10">
-        <%= f.password_field :password, class: "form-control", placeholder: "Password" %>
-      </div>
+  </div>
+  <div class="form-group">
+    <%= f.label :password, class: "col-sm-2 control-label" %>
+    <div class="col-sm-10">
+      <%= f.password_field :password, class: "form-control", placeholder: "Password" %>
     </div>
-    <div class="form-group">
-      <%= f.label :password_confirmation, class: "col-sm-2 control-label" %>
-      <div class="col-sm-10">
-        <%= f.password_field :password_confirmation, class: "form-control", placeholder: "Password Confirmation" %>
-      </div>
+  </div>
+  <div class="form-group">
+    <%= f.label :password_confirmation, class: "col-sm-2 control-label" %>
+    <div class="col-sm-10">
+      <%= f.password_field :password_confirmation, class: "form-control", placeholder: "Password Confirmation" %>
     </div>
-    <div class="form-group">
-      <div class="col-sm-offset-2 col-sm-10">
-        <%= f.submit "Sign Up!", class: "btn btn-default" %>
-      </div>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <%= f.submit "Sign Up!", class: "btn btn-default" %>
     </div>
-  <% end %>
-</form>
+  </div>
+<% end %>
