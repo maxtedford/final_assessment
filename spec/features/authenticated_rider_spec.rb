@@ -120,7 +120,9 @@ RSpec.describe "authenticated rider" do
       click_button "Request Ride"
 
       ride = Ride.last
-      ride.update_attributes(status: "completed", driver_id: driver.id)
+      ride.update_attributes(status: "accepted", accepted_time: 20.minutes.ago, driver_id: driver.id)
+      ride.update_attributes(status: "picked up", pickup_time: 15.minutes.ago, driver_id: driver.id)
+      ride.update_attributes(status: "completed", dropoff_time: DateTime.now, driver_id: driver.id)
       
       visit rider_path(rider)
 
@@ -143,9 +145,9 @@ RSpec.describe "authenticated rider" do
         status: "completed",
         rider_id: rider.id,
         driver_id: driver.id,
-        created_at: Time.now,
-        accepted_time: Time.now,
-        pickup_time: Time.now,
+        created_at: 20.minutes.ago,
+        accepted_time: 15.minutes.ago,
+        pickup_time: 10.minutes.ago,
         dropoff_time: Time.now
       )
       
@@ -164,6 +166,7 @@ RSpec.describe "authenticated rider" do
         expect(page).to have_content(ride.accepted_time)
         expect(page).to have_content(ride.pickup_time)
         expect(page).to have_content(ride.dropoff_time)
+        expect(page).to have_content(ride.cost)
       end
     end
   end

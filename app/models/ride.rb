@@ -20,4 +20,8 @@ class Ride < ActiveRecord::Base
   def rider_name
     Rider.find(self.rider_id).name if self.rider_id
   end
+  
+  def cost
+    ((((self.dropoff_time - self.pickup_time) / 60) / 3 ) * 2 ).round(2)
+  end
 end

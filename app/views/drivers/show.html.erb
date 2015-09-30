@@ -43,6 +43,6 @@
     <br>
     Completed Time: <%= ride.dropoff_time %>
     <br>
-    Ride Cost: TBD
+    Ride Cost: <%= number_to_currency(ride.cost, unit: "$") %>
   <% end %>
 </div>

@@ -8,6 +8,16 @@ RSpec.describe Ride, type: :model do
       email: "rider@mcgee.com",
       phone_number: 1234567890,
       password: "password"
+    ) }
+
+    let(:driver) { Driver.create(
+      name: "Driver McGee",
+      email: "driver@mcgee.com",
+      phone_number: 1234567890,
+      password: "password",
+      car_make: "Honda",
+      car_model: "Civic",
+      car_capacity: 3
     )}
     
     let(:valid_attributes) { { 
@@ -16,7 +26,11 @@ RSpec.describe Ride, type: :model do
       number_of_passengers: 2,
       status: "active",
       rider_id: rider.id,
-      driver_id: nil
+      driver_id: driver.id,
+      requested_time: nil,
+      accepted_time: nil,
+      pickup_time: 15.minutes.ago,
+      dropoff_time: DateTime.now
     } }
     
     it "is valid" do
@@ -83,6 +97,14 @@ RSpec.describe Ride, type: :model do
       )
       
       expect(valid_ride.status).to eq("active")
+    end
+    
+    it "can calculate its cost" do
+      rider
+      driver
+      ride = Ride.create(valid_attributes)
+      
+      expect(ride.cost).to eq(10)
     end
   end
 end

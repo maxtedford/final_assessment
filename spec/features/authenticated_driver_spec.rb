@@ -159,6 +159,7 @@ RSpec.describe "authenticated driver" do
         expect(page).to have_content(ride.accepted_time)
         expect(page).to have_content(ride.pickup_time)
         expect(page).to have_content(ride.dropoff_time)
+        expect(page).to have_content(ride.cost)
       end
     end
   end
