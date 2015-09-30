@@ -13,6 +13,6 @@ class ApplicationController < ActionController::Base
   end
   
   def current_driver_available_rides
-    @available_rides ||= Ride.where(status: "active").where("number_of_passengers <= ?", current_driver.car_capacity)
+    Ride.where(status: "active").where("number_of_passengers <= ?", current_driver.car_capacity)
   end
 end
