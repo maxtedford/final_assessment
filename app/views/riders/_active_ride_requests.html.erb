@@ -1,5 +1,5 @@
 <h2>Active Ride Requests:</h2>
-<div>
+<div id="active-rides">
   <% current_rider.active_rides.each do |ride| %>
     <div>
       <h4>Requested Time: <%= convert_to_readable(ride.created_at) %></h4>
