@@ -1,4 +1,5 @@
 class DriversController < ApplicationController
+  before_action :check_current_driver, only: [:show]  
   
   def new
     @driver = Driver.new
@@ -20,6 +21,10 @@ class DriversController < ApplicationController
   end
   
   private
+  
+  def check_current_driver
+    redirect_to root_path if !current_driver
+  end
   
   def strong_driver_params
     params.require(:driver).permit(:name, :email, :phone_number, :password, :car_make, :car_model, :car_capacity)

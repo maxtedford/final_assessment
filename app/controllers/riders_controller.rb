@@ -1,4 +1,5 @@
 class RidersController < ApplicationController
+  before_action :check_current_rider, only: [:show]
   
   def new
     @rider = Rider.new
@@ -21,6 +22,10 @@ class RidersController < ApplicationController
   end
   
   private
+  
+  def check_current_rider
+    redirect_to root_path if !current_rider
+  end
   
   def strong_rider_params
     params.require(:rider).permit(:name, :email, :phone_number, :password, :password_confirmation)
