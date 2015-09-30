@@ -75,11 +75,20 @@ RSpec.describe "authenticated driver" do
     
     it "has a link next to each ride for the driver to claim it" do
       expect(page).to have_link("Claim Ride")
+      expect(page).not_to have_content("Current Ride:")
     end
     
     it "only displays rides that have a passenger count less than or equal to the driver's capacity" do
       expect(page).to have_content("123 fake street")
       expect(page).not_to have_content("789 fake street")
+    end
+    
+    it "updates the status from active to accepted" do
+      click_link("Claim Ride")
+      
+      expect(page).to have_content("Current Ride:")
+      expect(page).to have_content("123 fake street")
+      expect(page).to have_content("accepted")
     end
   end
 end

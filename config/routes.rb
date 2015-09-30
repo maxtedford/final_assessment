@@ -12,5 +12,5 @@ Rails.application.routes.draw do
   
   resources :riders, only: [:new, :create, :show]
   resources :drivers, only: [:new, :create, :show]
-  resources :rides, only: [:new, :create]
+  resources :rides, only: [:new, :create, :update]
 end

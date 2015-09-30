@@ -10,6 +10,16 @@ RSpec.describe "authenticated rider" do
       password: "password" 
     ) }
     
+    let(:driver) { Driver.create(
+      name: "Driver McGee",
+      email: "driver@mcgee.com",
+      phone_number: 1234567890,
+      password: "password",
+      car_make: "Honda",
+      car_model: "Civic",
+      car_capacity: 3                     
+    ) }
+    
     before(:each) {
       rider
       visit rider_login_path
@@ -33,7 +43,6 @@ RSpec.describe "authenticated rider" do
     it "creates a new ride when the rider submits" do
       ride_count = Ride.count
       click_link "Request a Ride"
-      
       fill_in "ride[pickup_location]", with: "123 fake street"
       fill_in "ride[dropoff_location]", with: "123 faux street"
       fill_in "ride[number_of_passengers]", with: 2
@@ -55,13 +64,32 @@ RSpec.describe "authenticated rider" do
     
     it "removes the request ride link when there's an active ride" do
       click_link "Request a Ride"
-
       fill_in "ride[pickup_location]", with: "123 fake street"
       fill_in "ride[dropoff_location]", with: "123 faux street"
       fill_in "ride[number_of_passengers]", with: 2
       click_button "Request Ride"
       
       expect(page).not_to have_link("Request a Ride")
+    end
+    
+    it "updates the status of the ride request once the ride status changes" do
+      driver
+      
+      click_link "Request a Ride"
+      fill_in "ride[pickup_location]", with: "123 fake street"
+      fill_in "ride[dropoff_location]", with: "123 faux street"
+      fill_in "ride[number_of_passengers]", with: 2
+      click_button "Request Ride"
+      
+      ride = Ride.last
+      
+      ride.update_attributes(status: "accepted", driver_id: driver.id)
+      
+      visit rider_path(rider)
+      
+      expect(page).to have_content("accepted")
+      expect(page).to have_content("Driver McGee")
+      expect(page).to have_content("Honda Civic")
     end
   end
 end

@@ -15,6 +15,12 @@ class RidesController < ApplicationController
     end
   end
   
+  def update
+    ride = Ride.find(params[:id])
+    RideUpdater.new(ride, current_driver).update
+    redirect_to driver_path(current_driver)
+  end
+  
   private
   
   def strong_ride_params

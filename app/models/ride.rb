@@ -12,4 +12,8 @@ class Ride < ActiveRecord::Base
     presence: true
   validates :rider_id,
     presence: true
+  
+  def driver
+    Driver.find(self.driver_id) if self.driver_id
+  end
 end
