@@ -22,7 +22,7 @@ class Driver < ActiveRecord::Base
   # validate :email_uniqueness
 
   def current_ride
-    self.rides.where.not(status: "completed").last
+    rides.where.not(status: "completed").last
   end
   
   def completed_rides
