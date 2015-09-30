@@ -55,6 +55,7 @@ RSpec.describe "authenticated driver" do
     }
     
     before(:each) {
+      DatabaseCleaner.clean
       rider1
       rider2
       driver

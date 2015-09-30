@@ -12,7 +12,7 @@ class Rider < ActiveRecord::Base
     presence: true
   validates :password,
     presence: true
-  # validate :email_uniqueness
+  validate :email_uniqueness
   
   def active_rides
     rides.where.not(status: "completed")
@@ -25,6 +25,6 @@ class Rider < ActiveRecord::Base
   private
 
   def email_uniqueness
-    errors.add(:base, "Cannot use the same email as another user--must be unique") if Driver.all.each{ |driver| self.email == driver.email}
+    errors.add(:base, "Cannot use the same email as another user--must be unique") if Driver.any?{ |driver| driver.email.downcase == self.email.downcase }
   end
 end

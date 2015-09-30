@@ -19,7 +19,7 @@ class Driver < ActiveRecord::Base
   validates :car_capacity,
     presence: true,
     numericality: { with: /\A[+-]?\d+\Z/ }
-  # validate :email_uniqueness
+  validate :email_uniqueness
 
   def current_ride
     rides.where.not(status: "completed").last
@@ -32,6 +32,6 @@ class Driver < ActiveRecord::Base
   private
 
   def email_uniqueness
-    errors.add(:base, "Cannot use the same email as another user--must be unique") if Rider.all.each{ |rider| self.email == rider.email}
+    errors.add(:base, "Cannot use the same email as another user--must be unique") if Rider.any?{ |rider| rider.email == self.email }
   end
 end
