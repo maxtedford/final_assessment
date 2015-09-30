@@ -82,7 +82,6 @@ RSpec.describe "authenticated rider" do
       click_button "Request Ride"
       
       ride = Ride.last
-      
       ride.update_attributes(status: "accepted", driver_id: driver.id)
       
       visit rider_path(rider)
@@ -102,7 +101,6 @@ RSpec.describe "authenticated rider" do
       click_button "Request Ride"
 
       ride = Ride.last
-
       ride.update_attributes(status: "picked up", driver_id: driver.id)
 
       visit rider_path(rider)
@@ -122,15 +120,51 @@ RSpec.describe "authenticated rider" do
       click_button "Request Ride"
 
       ride = Ride.last
-
       ride.update_attributes(status: "completed", driver_id: driver.id)
-
+      
       visit rider_path(rider)
 
       expect(page).not_to have_content("picked up")
-      expect(page).not_to have_content("Driver McGee")
       expect(page).not_to have_content("Honda Civic")
       expect(page).to have_link("Request a Ride")
+    end
+    
+    it "has a section for all the rider's completed rides" do
+      expect(page).to have_content("Completed Rides")
+    end
+    
+    it "shows all completed rides in the completed rides section" do
+      driver
+      
+      ride = Ride.create(
+        pickup_location: "123 fake street",
+        dropoff_location: "123 faux street",
+        number_of_passengers: 2,
+        status: "completed",
+        rider_id: rider.id,
+        driver_id: driver.id,
+        created_at: Time.now,
+        accepted_time: Time.now,
+        pickup_time: Time.now,
+        dropoff_time: Time.now
+      )
+      
+      within("#completed-rides") do
+        expect(page).not_to have_content("123 fake street")
+      end
+
+      visit rider_path(rider)
+
+      within("#completed-rides") do
+        expect(page).to have_content("Rider McGee")
+        expect(page).to have_content("Driver McGee")
+        expect(page).to have_content("123 fake street")
+        expect(page).to have_content("123 faux street")
+        expect(page).to have_content(ride.created_at)
+        expect(page).to have_content(ride.accepted_time)
+        expect(page).to have_content(ride.pickup_time)
+        expect(page).to have_content(ride.dropoff_time)
+      end
     end
   end
 end

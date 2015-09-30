@@ -17,6 +17,10 @@ class Rider < ActiveRecord::Base
   def active_rides
     rides.where.not(status: "completed")
   end
+  
+  def completed_rides
+    rides.where(status: "completed")
+  end
 
   private
 

@@ -129,5 +129,37 @@ RSpec.describe "authenticated driver" do
 
       expect(ride.dropoff_time).not_to be_nil
     end
+
+    it "shows all completed rides in the completed rides section" do
+      ride = Ride.create(
+        pickup_location: "123 fake street",
+        dropoff_location: "123 faux street",
+        number_of_passengers: 2,
+        status: "completed",
+        rider_id: rider1.id,
+        driver_id: driver.id,
+        created_at: Time.now,
+        accepted_time: Time.now,
+        pickup_time: Time.now,
+        dropoff_time: Time.now
+      )
+
+      within("#completed-rides") do
+        expect(page).not_to have_content("123 fake street")
+      end
+
+      visit driver_path(driver)
+
+      within("#completed-rides") do
+        expect(page).to have_content("Rider McGee")
+        expect(page).to have_content("Driver McGee")
+        expect(page).to have_content("123 fake street")
+        expect(page).to have_content("123 faux street")
+        expect(page).to have_content(ride.created_at)
+        expect(page).to have_content(ride.accepted_time)
+        expect(page).to have_content(ride.pickup_time)
+        expect(page).to have_content(ride.dropoff_time)
+      end
+    end
   end
 end

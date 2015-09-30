@@ -25,6 +25,10 @@ class Driver < ActiveRecord::Base
     self.rides.where.not(status: "completed").last
   end
   
+  def completed_rides
+    rides.where(status: "completed")
+  end
+  
   private
 
   def email_uniqueness
