@@ -13,6 +13,10 @@ class Rider < ActiveRecord::Base
   validates :password,
     presence: true
   # validate :email_uniqueness
+  
+  def active_rides
+    rides.where(status: "active")
+  end
 
   private
 
