@@ -7,13 +7,12 @@ class RidesController < ApplicationController
   def create
     @ride = Ride.new(strong_ride_params)
     @ride.rider_id = current_rider.id
-    @ride.time_in_minutes = GoogleDirections.new(params[:ride][:pickup_location], params[:ride][:dropoff_location]).drive_time_in_minutes
-    @ride.mileage = GoogleDirections.new(params[:ride][:pickup_location], params[:ride][:dropoff_location]).distance_in_miles
+    RideEstimator.new(@ride, params[:ride][:pickup_location], params[:ride][:dropoff_location]).estimate
     if @ride.save
       flash[:message] = "You've just requested a ride!"
       redirect_to rider_path(current_rider)
     else
-      flash.now[:error] = @ride.errors.full_messages.join(", ")
+      flash.now[:errors] = @ride.errors.full_messages.join(", ")
     end
   end
   

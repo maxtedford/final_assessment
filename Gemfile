@@ -12,6 +12,7 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'database_cleaner'
 gem 'google_directions'
 gem 'figaro'
+gem 'bootstrap-sass', '~> 3.3.5'
 
 group :development, :test do
   gem 'byebug'

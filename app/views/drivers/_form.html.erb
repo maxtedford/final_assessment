@@ -1,27 +1,57 @@
-<%= form_for driver do |f| %>
-  <%= f.label :name %>
-  <%= f.text_field :name %>
-  <br>
-  <%= f.label :email %>
-  <%= f.text_field :email %>
-  <br>
-  <%= f.label :phone_number %>
-  <%= f.text_field :phone_number %>
-  <br>
-  <%= f.label :password %>
-  <%= f.password_field :password %>
-  <br>
-  <%= f.label :password_confirmation %>
-  <%= f.password_field :password_confirmation %>
-  <br>
-  <%= f.label :car_make %>
-  <%= f.text_field :car_make %>
-  <br>
-  <%= f.label :car_model %>
-  <%= f.text_field :car_model %>
-  <br>
-  <%= f.label :car_capacity %>
-  <%= f.text_field :car_capacity %>
-  <br>
-  <%= f.submit %>
-<% end %>
+<form class="form-horizontal">
+  <%= form_for driver do |f| %>
+    <div class="form-group">
+      <%= f.label :name, class: "col-sm-2 control-label" %>
+      <div class="col-sm-10">
+        <%= f.text_field :name, class: "form-control", placeholder: "Name" %>
+      </div>
+    </div>
+    <div class="form-group">
+      <%= f.label :email, class: "col-sm-2 control-label" %>
+      <div class="col-sm-10">
+        <%= f.text_field :email, class: "form-control", placeholder: "Email" %>
+      </div>
+    </div>
+    <div class="form-group">
+      <%= f.label :phone_number, class: "col-sm-2 control-label" %>
+      <div class="col-sm-10">
+        <%= f.text_field :phone_number, class: "form-control", placeholder: "Phone Number" %>
+      </div>
+    </div>
+    <div class="form-group">
+      <%= f.label :password, class: "col-sm-2 control-label" %>
+      <div class="col-sm-10">
+        <%= f.password_field :password, class: "form-control", placeholder: "Password" %>
+      </div>
+    </div>
+    <div class="form-group">
+      <%= f.label :password_confirmation, class: "col-sm-2 control-label" %>
+      <div class="col-sm-10">
+        <%= f.password_field :password_confirmation, class: "form-control", placeholder: "Password Confirmation" %>
+      </div>
+    </div>
+    <div class="form-group">
+      <%= f.label :car_make, class: "col-sm-2 control-label" %>
+      <div class="col-sm-10">
+        <%= f.text_field :car_make, class: "form-control", placeholder: "Car Make" %>
+      </div>
+    </div>
+    <div class="form-group">
+      <%= f.label :car_model, class: "col-sm-2 control-label" %>
+      <div class="col-sm-10">
+        <%= f.password_field :car_model, class: "form-control", placeholder: "Car Model" %>
+      </div>
+    </div>
+    <div class="form-group">
+      <%= f.label :car_capacity, class: "col-sm-2 control-label" %>
+      <div class="col-sm-10">
+        <%= f.password_field :car_capacity, class: "form-control", placeholder: "Car Capacity" %>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-sm-offset-2 col-sm-10">
+        <%= f.submit "Sign Up!", class: "btn btn-default" %>
+      </div>
+    </div>
+  <% end %>
+</form>

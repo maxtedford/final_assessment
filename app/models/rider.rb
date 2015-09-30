@@ -25,6 +25,10 @@ class Rider < ActiveRecord::Base
   private
 
   def email_uniqueness
-    errors.add(:base, "Cannot use the same email as another user--must be unique") if Driver.any?{ |driver| driver.email.downcase == self.email.downcase }
+    errors.add(:base, "Cannot use the same email as another user--must be unique") if matches_driver_email
+  end
+  
+  def matches_driver_email
+    Driver.any?{ |driver| driver.email.downcase == self.email.downcase }
   end
 end

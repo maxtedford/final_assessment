@@ -11,7 +11,8 @@ class Driver < ActiveRecord::Base
   validates :phone_number,
     presence: true
   validates :password,
-    presence: true, on: :create
+    presence: true, on: :create,
+    confirmation: true
   validates :car_make,
     presence: true
   validates :car_model,
@@ -32,6 +33,10 @@ class Driver < ActiveRecord::Base
   private
 
   def email_uniqueness
-    errors.add(:base, "Cannot use the same email as another user--must be unique") if Rider.any?{ |rider| rider.email == self.email }
+    errors.add(:base, "Cannot use the same email as another user--must be unique") if matches_rider_email
+  end
+  
+  def matches_rider_email
+    Rider.any?{ |rider| rider.email == self.email }
   end
 end
