@@ -1,0 +1,8 @@
+<h3>Current Ride:</h3>
+<p><%= current_driver.current_ride.pickup_location %></p>
+<p><%= current_driver.current_ride.status %></p>
+<% if current_driver.current_ride.status == "accepted" %>
+  <%= link_to "Pick up Rider", ride_path(current_driver.current_ride), method: :put %>
+<% elsif current_driver.current_ride.status == "picked up" %>
+  <%= link_to "Complete Ride", ride_path(current_driver.current_ride), method: :put %>
+<% end %>

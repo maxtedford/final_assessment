@@ -1,0 +1,12 @@
+<h3>Available Rides:</h3>
+<div>
+  <% current_driver_available_rides.each do |ride| %>
+    <div>
+      <h4><%= ride.pickup_location %></h4>
+      <br>
+      <h4><%= ride.number_of_passengers %></h4>
+      <br>
+      <%= link_to "Claim Ride", ride_path(ride), method: :put %>
+    </div>
+  <% end %>
+</div>

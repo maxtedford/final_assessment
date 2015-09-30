@@ -1,0 +1,14 @@
+<h2>Active Ride Requests:</h2>
+<div>
+  <% current_rider.active_rides.each do |ride| %>
+    <div>
+      <h4><%= ride.created_at %></h4>
+      <br>
+      <h4><%= ride.status %></h4>
+      <% if ride.driver %>
+        <br>
+        <h4>Your Driver: <%= ride.driver.name %> (<%= ride.driver.car_make %> <%= ride.driver.car_model %>)</h4>
+      <% end %>
+    </div>
+  <% end %>
+</div>

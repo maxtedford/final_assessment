@@ -9,13 +9,13 @@
     <br>
     Dropoff Location: <%= ride.dropoff_location %>
     <br>
-    Requested Time: <%= ride.created_at %>
+    Requested Time: <%= convert_to_readable(ride.created_at) %>
     <br>
-    Accepted Time: <%= ride.accepted_time %>
+    Accepted Time: <%= convert_to_readable(ride.accepted_time) %>
     <br>
-    Pick-up Time: <%= ride.pickup_time %>
+    Pick-up Time: <%= convert_to_readable(ride.pickup_time) %>
     <br>
-    Completed Time: <%= ride.dropoff_time %>
+    Completed Time: <%= convert_to_readable(ride.dropoff_time) %>
     <br>
     Ride Cost: <%= number_to_currency(ride.cost, unit: "$") %>
   <% end %>

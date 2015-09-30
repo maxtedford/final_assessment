@@ -1,27 +1,13 @@
 <h1>Welcome, <%= current_driver.name %>!</h1>
 
 <% if !current_driver.current_ride %>
-  <h3>Available Rides:</h3>
-  <div>
-    <% current_driver_available_rides.each do |ride| %>
-      <div>
-        <h4><%= ride.pickup_location %></h4>
-        <br>
-        <h4><%= ride.number_of_passengers %></h4>
-        <br>
-        <%= link_to "Claim Ride", ride_path(ride), method: :put %>
-      </div>
-    <% end %>
-  </div>
+  
+  <%= render partial: "available_rides" %>
+  
 <% else %>
-  <h3>Current Ride:</h3>
-  <p><%= current_driver.current_ride.pickup_location %></p>
-  <p><%= current_driver.current_ride.status %></p>
-  <% if current_driver.current_ride.status == "accepted" %>
-    <%= link_to "Pick up Rider", ride_path(current_driver.current_ride), method: :put %>
-  <% elsif current_driver.current_ride.status == "picked up" %>
-    <%= link_to "Complete Ride", ride_path(current_driver.current_ride), method: :put %>
-  <% end %>
+  
+  <%= render partial: "current_ride" %>
+  
 <% end %>
 
 <%= render partial: "completed_rides" %>

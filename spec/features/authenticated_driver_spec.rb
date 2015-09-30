@@ -155,10 +155,6 @@ RSpec.describe "authenticated driver" do
         expect(page).to have_content("Driver McGee")
         expect(page).to have_content("123 fake street")
         expect(page).to have_content("123 faux street")
-        expect(page).to have_content(ride.created_at)
-        expect(page).to have_content(ride.accepted_time)
-        expect(page).to have_content(ride.pickup_time)
-        expect(page).to have_content(ride.dropoff_time)
         expect(page).to have_content(ride.cost)
       end
     end
