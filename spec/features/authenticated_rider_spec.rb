@@ -203,6 +203,7 @@ RSpec.describe "authenticated rider" do
         within("#active-rides") do
           expect(page).to have_content("Ride Duration: 6 minutes")
           expect(page).to have_content("Ride Distance: 1 mile")
+          expect(page).to have_content("Estimated Cost: $4.00")
         end
       end
     end

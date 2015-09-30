@@ -9,6 +9,8 @@
       <h4>Ride Duration: <%= pluralize(ride.time_in_minutes, "minute") %></h4>
       <br>
       <h4>Ride Distance: <%= pluralize(ride.mileage, "mile") %></h4>
+      <br>
+      <h4>Estimated Cost: <%= number_to_currency(ride.estimated_cost) %></h4>
       <% if ride.driver %>
         <br>
         <h4>Your Driver: <%= ride.driver.name %> (<%= ride.driver.car_make %> <%= ride.driver.car_model %>)</h4>
