@@ -15,7 +15,7 @@ class Rider < ActiveRecord::Base
   # validate :email_uniqueness
   
   def active_rides
-    rides.where.not(status: "complete")
+    rides.where.not(status: "completed")
   end
 
   private

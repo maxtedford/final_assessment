@@ -91,5 +91,46 @@ RSpec.describe "authenticated rider" do
       expect(page).to have_content("Driver McGee")
       expect(page).to have_content("Honda Civic")
     end
+    
+    it "updates the status for the rider from 'accepted' to 'picked up'" do
+      driver
+
+      click_link "Request a Ride"
+      fill_in "ride[pickup_location]", with: "123 fake street"
+      fill_in "ride[dropoff_location]", with: "123 faux street"
+      fill_in "ride[number_of_passengers]", with: 2
+      click_button "Request Ride"
+
+      ride = Ride.last
+
+      ride.update_attributes(status: "picked up", driver_id: driver.id)
+
+      visit rider_path(rider)
+
+      expect(page).to have_content("picked up")
+      expect(page).to have_content("Driver McGee")
+      expect(page).to have_content("Honda Civic")
+    end
+    
+    it "updates the status from the rider from 'picked up' to 'complete'" do
+      driver
+
+      click_link "Request a Ride"
+      fill_in "ride[pickup_location]", with: "123 fake street"
+      fill_in "ride[dropoff_location]", with: "123 faux street"
+      fill_in "ride[number_of_passengers]", with: 2
+      click_button "Request Ride"
+
+      ride = Ride.last
+
+      ride.update_attributes(status: "completed", driver_id: driver.id)
+
+      visit rider_path(rider)
+
+      expect(page).not_to have_content("picked up")
+      expect(page).not_to have_content("Driver McGee")
+      expect(page).not_to have_content("Honda Civic")
+      expect(page).to have_link("Request a Ride")
+    end
   end
 end

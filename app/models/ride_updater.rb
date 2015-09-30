@@ -18,7 +18,6 @@ attr_reader :ride, :driver
       ride.save
     else
       ride.status = "completed"
-      ride.drop
       ride.dropoff_time = DateTime.now
       ride.save
     end

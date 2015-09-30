@@ -2,19 +2,19 @@
 
 <% if current_rider.active_rides.length == 0 %>
   <%= link_to "Request a Ride", new_ride_path %>
-<% end %>
-
-<h2>Active Ride Requests:</h2>
-<div>
-  <% current_rider.active_rides.each do |ride| %>
+<% else %>
+  <h2>Active Ride Requests:</h2>
   <div>
-    <h4><%= ride.created_at %></h4>
-    <br>
-    <h4><%= ride.status %></h4>
-    <% if ride.driver %>
-    <br>
-    <h4>Your Driver: <%= ride.driver.name %> (<%= ride.driver.car_make %> <%= ride.driver.car_model %>)</h4>
+    <% current_rider.active_rides.each do |ride| %>
+      <div>
+        <h4><%= ride.created_at %></h4>
+        <br>
+        <h4><%= ride.status %></h4>
+        <% if ride.driver %>
+          <br>
+          <h4>Your Driver: <%= ride.driver.name %> (<%= ride.driver.car_make %> <%= ride.driver.car_model %>)</h4>
+        <% end %>
+      </div>
     <% end %>
   </div>
-  <% end %>
-</div>
+<% end %>
