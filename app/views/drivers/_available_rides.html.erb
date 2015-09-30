@@ -1,12 +1,22 @@
-<h3>Available Rides:</h3>
-<div>
-  <% current_driver_available_rides.each do |ride| %>
-    <div>
-      <h4><%= ride.pickup_location %></h4>
-      <br>
-      <h4><%= ride.number_of_passengers %></h4>
-      <br>
-      <%= link_to "Claim Ride", ride_path(ride), method: :put %>
-    </div>
-  <% end %>
+<div class="available-rides">
+  <h3>Available Rides:</h3>
+  <div>
+    <% current_driver_available_rides.each do |ride| %>
+      <div class="current-available-rides">
+        <%= ride.pickup_location %>
+        <br>
+        to
+        <br>
+        <%= ride.dropoff_location %>
+        <br>
+        <div class="passenger-count">
+          <%= ride.number_of_passengers %> passengers
+        </div>
+        <br>
+        <div class="claim-button">
+          <%= link_to "Claim Ride", ride_path(ride), method: :put, class: "btn btn-default btn-md" %>
+        </div>
+      </div>
+    <% end %>
+  </div>
 </div>

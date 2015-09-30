@@ -1,0 +1,62 @@
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+// WELCOME //
+
+h1 {
+  text-align: center;
+}
+
+h3 {
+  text-align: center;
+}
+
+#buttons{
+  text-align: center;
+}
+
+.signup-button{
+  margin: 30px 75px;
+}
+
+// RIDER DASHBOARD //
+
+#rider-welcome {
+  margin-bottom: 60px;
+}
+
+.available-rides {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+#completed-rides {
+  text-align: center;
+}
+
+.completed-rides-info {
+  margin: 20px 0;
+}
+
+// DRIVER DASHBOARD //
+
+#active-ride-requests{
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.current-available-rides {
+  margin-top: 40px;
+}
+
+.passenger-count {
+  margin-top: 10px;
+}
+
+#current-ride {
+  text-align: center;
+}
+
+#current-ride-status {
+  margin-top: 10px;
+}

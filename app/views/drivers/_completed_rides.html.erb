@@ -1,22 +1,24 @@
 <div id="completed-rides">
   <h2>Completed Rides: <%= current_driver.completed_rides.count %></h2>
   <% current_driver.completed_rides.each do |ride| %>
-    Rider: <%= ride.rider_name %>
-    <br>
-    Driver: <%= ride.driver_name %>
-    <br>
-    Pickup Location: <%= ride.pickup_location %>
-    <br>
-    Dropoff Location: <%= ride.dropoff_location %>
-    <br>
-    Requested Time: <%= convert_to_readable(ride.created_at) %>
-    <br>
-    Accepted Time: <%= convert_to_readable(ride.accepted_time) %>
-    <br>
-    Pick-up Time: <%= convert_to_readable(ride.pickup_time) %>
-    <br>
-    Completed Time: <%= convert_to_readable(ride.dropoff_time) %>
-    <br>
-    Ride Cost: <%= number_to_currency(ride.cost, unit: "$") %>
+    <div class="completed-rides-info">
+      Rider: <%= ride.rider_name %>
+      <br>
+      Driver: <%= ride.driver_name %>
+      <br>
+      Pickup Location: <%= ride.pickup_location %>
+      <br>
+      Dropoff Location: <%= ride.dropoff_location %>
+      <br>
+      Requested Time: <%= convert_to_readable(ride.created_at) %>
+      <br>
+      Accepted Time: <%= convert_to_readable(ride.accepted_time) %>
+      <br>
+      Pick-up Time: <%= convert_to_readable(ride.pickup_time) %>
+      <br>
+      Completed Time: <%= convert_to_readable(ride.dropoff_time) %>
+      <br>
+      Ride Cost: <%= number_to_currency(ride.cost, unit: "$") %>
+    </div>
   <% end %>
 </div>

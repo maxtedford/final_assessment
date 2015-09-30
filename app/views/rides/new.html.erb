@@ -1,14 +1,32 @@
-<h1>Tell us about your ride:</h1>
+<div class="container">
+  <h1>Tell us about your ride:</h1>
 
-<%= form_for @ride do |f| %>
-  <%= f.label :pickup_location %>
-  <%= f.text_field :pickup_location %>
-  <br>
-  <%= f.label :dropoff_location %>
-  <%= f.text_field :dropoff_location %>
-  <br>
-  <%= f.label :number_of_passengers %>
-  <%= f.text_field :number_of_passengers %>
-  <br>
-  <%= f.submit "Request Ride" %>
-<% end %>
+  <%= form_for @ride do |f| %>
+    <div class="form-group">
+      <%= f.label :pickup_location, class: "col-sm-2 control-label" %>
+      <div class="col-sm-10">
+        <%= f.text_field :pickup_location, class: "form-control", placeholder: "Pickup Location" %>
+      </div>
+    </div>
+    <br>
+    <div class="form-group">
+      <%= f.label :dropoff_location, class: "col-sm-2 control-label" %>
+      <div class="col-sm-10">
+        <%= f.text_field :dropoff_location, class: "form-control", placeholder: "Dropoff Location" %>
+      </div>
+    </div>
+    <br>
+    <div class="form-group">
+      <%= f.label :number_of_passengers, class: "col-sm-2 control-label" %>
+      <div class="col-sm-10">
+        <%= f.text_field :number_of_passengers, class: "form-control", placeholder: "Number of Passengers" %>
+      </div>
+    </div>
+    <br>
+    <div class="form-group">
+      <div class="col-sm-offset-2 col-sm-10">
+        <%= f.submit "Request Ride", class: "btn btn-default" %>
+      </div>
+    </div>
+  <% end %>
+</div>

@@ -1,4 +1,10 @@
-<h1>Welcome to Goober!</h1>
-
-<%= link_to "Rider",  new_rider_path %>
-<%= link_to "Driver", new_driver_path %>
+<div class="container">
+  <div class="jumbotron">
+    <h1>Welcome to Goober!</h1>
+    <h3>Sign me up as a...</h3>
+    <div id="buttons">
+    <%= link_to "Rider",  new_rider_path, class: "btn btn-primary btn-lg signup-button" %>
+    <%= link_to "Driver", new_driver_path, class: "btn btn-primary btn-lg signup-button" %>
+    </div>
+  </div>
+</div>

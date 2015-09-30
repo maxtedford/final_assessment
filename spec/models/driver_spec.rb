@@ -111,6 +111,15 @@ RSpec.describe Driver, type: :model do
     end
     
     it "must have a car capacity in integer format" do
+      valid_driver = Driver.create(
+        name: "Driver McGee",
+        email: "driver@mcgee.com",
+        phone_number: 1234567890,
+        password: "password",
+        car_make: "Honda",
+        car_model: "Civic",
+        car_capacity: 3
+      )
       invalid_driver = Driver.create(
         name: "Driver McGee",
         email: "driver@mcgee.com",
@@ -121,6 +130,7 @@ RSpec.describe Driver, type: :model do
         car_capacity: "A"
       )
       
+      expect(valid_driver).to be_valid
       expect(invalid_driver).not_to be_valid
     end
   end

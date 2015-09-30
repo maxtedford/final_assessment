@@ -1,13 +1,15 @@
-<h1>Welcome, <%= current_rider.name %>!</h1>
+<div class="container">
+  <h1 id="rider-welcome">Welcome, <%= current_rider.name %>!</h1>
 
-<% if current_rider.active_rides.length == 0 %>
+  <% if current_rider.active_rides.length == 0 %>
   
-  <%= render partial: "available_rides" %>
+    <%= render partial: "available_rides" %>
   
-<% else %>
+  <% else %>
   
-  <%= render partial: "active_ride_requests" %>
+    <%= render partial: "active_ride_requests" %>
   
-<% end %>
+  <% end %>
 
-<%= render partial: "completed_rides" %>
+  <%= render partial: "completed_rides" %>
+</div>
