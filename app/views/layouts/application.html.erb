@@ -16,6 +16,9 @@
   <%= link_to "Login as Rider", rider_login_path %>
   <%= link_to "Login as Driver", driver_login_path%>
 <% end %>
+<br>
+<%= flash[:message] %>
+<%= flash.now[:errors] %>
 
 <%= yield %>
 

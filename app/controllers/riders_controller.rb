@@ -12,7 +12,7 @@ class RidersController < ApplicationController
       session[:rider_id] = @rider.id
       redirect_to @rider
     else
-      flash.now[:error] = @rider.errors.full_messages.join(", ")
+      flash.now[:errors] = @rider.errors.full_messages.join(", ")
       render :new
     end
   end

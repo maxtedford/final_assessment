@@ -12,7 +12,7 @@ class DriversController < ApplicationController
       session[:driver_id] = @driver.id
       redirect_to @driver
     else
-      flash.now[:error] = @driver.errors.full_messages.join(", ")
+      flash.now[:errors] = @driver.errors.full_messages.join(", ")
       render :new
     end
   end
@@ -27,6 +27,6 @@ class DriversController < ApplicationController
   end
   
   def strong_driver_params
-    params.require(:driver).permit(:name, :email, :phone_number, :password, :car_make, :car_model, :car_capacity)
+    params.require(:driver).permit(:name, :email, :phone_number, :password, :password_confirmation, :car_make, :car_model, :car_capacity)
   end
 end
