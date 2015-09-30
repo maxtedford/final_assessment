@@ -2,9 +2,13 @@
 <div>
   <% current_rider.active_rides.each do |ride| %>
     <div>
-      <h4><%= ride.created_at %></h4>
+      <h4>Requested Time: <%= convert_to_readable(ride.created_at) %></h4>
       <br>
-      <h4><%= ride.status %></h4>
+      <h4>Ride Status: <%= ride.status %></h4>
+      <br>
+      <h4>Ride Duration: <%= pluralize(ride.time_in_minutes, "minute") %></h4>
+      <br>
+      <h4>Ride Distance: <%= pluralize(ride.mileage, "mile") %></h4>
       <% if ride.driver %>
         <br>
         <h4>Your Driver: <%= ride.driver.name %> (<%= ride.driver.car_make %> <%= ride.driver.car_model %>)</h4>

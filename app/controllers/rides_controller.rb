@@ -7,6 +7,8 @@ class RidesController < ApplicationController
   def create
     @ride = Ride.new(strong_ride_params)
     @ride.rider_id = current_rider.id
+    @ride.time_in_minutes = GoogleDirections.new(params[:ride][:pickup_location], params[:ride][:dropoff_location]).drive_time_in_minutes
+    @ride.mileage = GoogleDirections.new(params[:ride][:pickup_location], params[:ride][:dropoff_location]).distance_in_miles
     if @ride.save
       flash[:message] = "You've just requested a ride!"
       redirect_to rider_path(current_rider)
@@ -22,7 +24,7 @@ class RidesController < ApplicationController
   end
   
   private
-  
+
   def strong_ride_params
     params.require(:ride).permit(
       :pickup_location,
@@ -34,7 +36,9 @@ class RidesController < ApplicationController
       :pickup_time,
       :dropoff_time,
       :rider_id,
-      :driver_id
+      :driver_id,
+      :time_in_minutes,
+      :mileage
     )
   end
 end

@@ -10,6 +10,9 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'bcrypt', '~> 3.1.7'
 gem 'database_cleaner'
+gem 'geokit'
+gem 'google_directions'
+gem 'figaro'
 
 group :development, :test do
   gem 'byebug'

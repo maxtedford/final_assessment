@@ -43,8 +43,8 @@ RSpec.describe "authenticated rider" do
     it "creates a new ride when the rider submits" do
       ride_count = Ride.count
       click_link "Request a Ride"
-      fill_in "ride[pickup_location]", with: "123 fake street"
-      fill_in "ride[dropoff_location]", with: "123 faux street"
+      fill_in "ride[pickup_location]", with: "1505 Blake Street, Denver, CO"
+      fill_in "ride[dropoff_location]", with: "2557 Dunkeld Place, Denver, CO"
       fill_in "ride[number_of_passengers]", with: 2
       click_button "Request Ride"
       
@@ -54,8 +54,8 @@ RSpec.describe "authenticated rider" do
       
       expect(page).to have_content("Welcome, Rider McGee")
       expect(new_ride.status).to eq("active")
-      expect(new_ride.pickup_location).to eq("123 fake street")
-      expect(new_ride.dropoff_location).to eq("123 faux street")
+      expect(new_ride.pickup_location).to eq("1505 Blake Street, Denver, CO")
+      expect(new_ride.dropoff_location).to eq("2557 Dunkeld Place, Denver, CO")
       expect(new_ride.number_of_passengers).to eq(2)
       expect(new_ride.rider_id).to eq(rider.id)
       expect(page).to have_content("#{new_ride.created_at}")
@@ -64,8 +64,8 @@ RSpec.describe "authenticated rider" do
     
     it "removes the request ride link when there's an active ride" do
       click_link "Request a Ride"
-      fill_in "ride[pickup_location]", with: "123 fake street"
-      fill_in "ride[dropoff_location]", with: "123 faux street"
+      fill_in "ride[pickup_location]", with: "1505 Blake Street, Denver, CO"
+      fill_in "ride[dropoff_location]", with: "2557 Dunkeld Place, Denver, CO"
       fill_in "ride[number_of_passengers]", with: 2
       click_button "Request Ride"
       
@@ -76,8 +76,8 @@ RSpec.describe "authenticated rider" do
       driver
       
       click_link "Request a Ride"
-      fill_in "ride[pickup_location]", with: "123 fake street"
-      fill_in "ride[dropoff_location]", with: "123 faux street"
+      fill_in "ride[pickup_location]", with: "1505 Blake Street, Denver, CO"
+      fill_in "ride[dropoff_location]", with: "2557 Dunkeld Place, Denver, CO"
       fill_in "ride[number_of_passengers]", with: 2
       click_button "Request Ride"
       
@@ -95,8 +95,8 @@ RSpec.describe "authenticated rider" do
       driver
 
       click_link "Request a Ride"
-      fill_in "ride[pickup_location]", with: "123 fake street"
-      fill_in "ride[dropoff_location]", with: "123 faux street"
+      fill_in "ride[pickup_location]", with: "1505 Blake Street, Denver, CO"
+      fill_in "ride[dropoff_location]", with: "2557 Dunkeld Place, Denver, CO"
       fill_in "ride[number_of_passengers]", with: 2
       click_button "Request Ride"
 
@@ -114,8 +114,8 @@ RSpec.describe "authenticated rider" do
       driver
 
       click_link "Request a Ride"
-      fill_in "ride[pickup_location]", with: "123 fake street"
-      fill_in "ride[dropoff_location]", with: "123 faux street"
+      fill_in "ride[pickup_location]", with: "1505 Blake Street, Denver, CO"
+      fill_in "ride[dropoff_location]", with: "2557 Dunkeld Place, Denver, CO"
       fill_in "ride[number_of_passengers]", with: 2
       click_button "Request Ride"
 
@@ -139,8 +139,8 @@ RSpec.describe "authenticated rider" do
       driver
       
       ride = Ride.create(
-        pickup_location: "123 fake street",
-        dropoff_location: "123 faux street",
+        pickup_location: "1505 Blake Street, Denver, CO",
+        dropoff_location: "2557 Dunkeld Place, Denver, CO",
         number_of_passengers: 2,
         status: "completed",
         rider_id: rider.id,
@@ -152,7 +152,7 @@ RSpec.describe "authenticated rider" do
       )
       
       within("#completed-rides") do
-        expect(page).not_to have_content("123 fake street")
+        expect(page).not_to have_content("1505 Blake Street, Denver, CO")
       end
 
       visit rider_path(rider)
@@ -160,8 +160,8 @@ RSpec.describe "authenticated rider" do
       within("#completed-rides") do
         expect(page).to have_content("Rider McGee")
         expect(page).to have_content("Driver McGee")
-        expect(page).to have_content("123 fake street")
-        expect(page).to have_content("123 faux street")
+        expect(page).to have_content("1505 Blake Street, Denver, CO")
+        expect(page).to have_content("2557 Dunkeld Place, Denver, CO")
         expect(page).to have_content(ride.cost)
       end
     end

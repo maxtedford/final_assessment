@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150929230544) do
+ActiveRecord::Schema.define(version: 20150930055403) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -50,6 +50,8 @@ ActiveRecord::Schema.define(version: 20150929230544) do
     t.integer  "driver_id"
     t.datetime "created_at",                              null: false
     t.datetime "updated_at",                              null: false
+    t.string   "mileage"
+    t.string   "time_in_minutes"
   end
 
   add_index "rides", ["driver_id"], name: "index_rides_on_driver_id", using: :btree

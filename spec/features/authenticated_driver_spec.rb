@@ -29,8 +29,8 @@ RSpec.describe "authenticated driver" do
     
     let(:create_rides) {
       Ride.create(
-        pickup_location: "123 fake street",
-        dropoff_location: "123 faux street",
+        pickup_location: "1505 Blake Street, Denver, CO",
+        dropoff_location: "2557 Dunkeld Place, Denver, CO",
         number_of_passengers: 2,
         status: "active",
         rider_id: rider1.id,
@@ -67,7 +67,7 @@ RSpec.describe "authenticated driver" do
     
     it "has a list for all available rides (those with a status of 'active')" do
       expect(page).to have_content("Available Rides")
-      expect(page).to have_content("123 fake street")
+      expect(page).to have_content("1505 Blake Street, Denver, CO")
       expect(page).to have_content("2")
       expect(page).not_to have_content("456 fake street")
       expect(page).not_to have_content("4")
@@ -79,7 +79,7 @@ RSpec.describe "authenticated driver" do
     end
     
     it "only displays rides that have a passenger count less than or equal to the driver's capacity" do
-      expect(page).to have_content("123 fake street")
+      expect(page).to have_content("1505 Blake Street, Denver, CO")
       expect(page).not_to have_content("789 fake street")
     end
     
@@ -87,7 +87,7 @@ RSpec.describe "authenticated driver" do
       click_link("Claim Ride")
       
       expect(page).to have_content("Current Ride:")
-      expect(page).to have_content("123 fake street")
+      expect(page).to have_content("1505 Blake Street, Denver, CO")
       expect(page).to have_content("accepted")
       expect(page).not_to have_content("Available Rides")
     end
@@ -105,7 +105,7 @@ RSpec.describe "authenticated driver" do
       expect(page).not_to have_link("Pick up Rider")
       expect(page).to have_content("picked up")
       
-      ride = Ride.find_by(pickup_location: "123 fake street")
+      ride = Ride.find_by(pickup_location: "1505 Blake Street, Denver, CO")
       
       expect(ride.pickup_time).not_to be_nil
     end
@@ -125,15 +125,15 @@ RSpec.describe "authenticated driver" do
       expect(page).not_to have_link("Complete Ride")
       expect(page).to have_content("Available Rides")
 
-      ride = Ride.find_by(pickup_location: "123 fake street")
+      ride = Ride.find_by(pickup_location: "1505 Blake Street, Denver, CO")
 
       expect(ride.dropoff_time).not_to be_nil
     end
 
     it "shows all completed rides in the completed rides section" do
       ride = Ride.create(
-        pickup_location: "123 fake street",
-        dropoff_location: "123 faux street",
+        pickup_location: "1505 Blake Street, Denver, CO",
+        dropoff_location: "2557 Dunkeld Place, Denver, CO",
         number_of_passengers: 2,
         status: "completed",
         rider_id: rider1.id,
@@ -145,7 +145,7 @@ RSpec.describe "authenticated driver" do
       )
 
       within("#completed-rides") do
-        expect(page).not_to have_content("123 fake street")
+        expect(page).not_to have_content("1505 Blake Street, Denver, CO")
       end
 
       visit driver_path(driver)
@@ -153,8 +153,8 @@ RSpec.describe "authenticated driver" do
       within("#completed-rides") do
         expect(page).to have_content("Rider McGee")
         expect(page).to have_content("Driver McGee")
-        expect(page).to have_content("123 fake street")
-        expect(page).to have_content("123 faux street")
+        expect(page).to have_content("1505 Blake Street, Denver, CO")
+        expect(page).to have_content("2557 Dunkeld Place, Denver, CO")
         expect(page).to have_content(ride.cost)
       end
     end

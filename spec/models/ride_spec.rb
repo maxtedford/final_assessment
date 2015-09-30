@@ -20,9 +20,9 @@ RSpec.describe Ride, type: :model do
       car_capacity: 3
     )}
     
-    let(:valid_attributes) { { 
-      pickup_location: "123 fake street",
-      dropoff_location: "123 faux street",
+    let(:valid_attributes) { {
+      pickup_location: "1505 Blake Street, Denver, CO",
+      dropoff_location: "2557 Dunkeld Place, Denver, CO",
       number_of_passengers: 2,
       status: "active",
       rider_id: rider.id,
@@ -30,7 +30,9 @@ RSpec.describe Ride, type: :model do
       requested_time: nil,
       accepted_time: nil,
       pickup_time: 15.minutes.ago,
-      dropoff_time: DateTime.now
+      dropoff_time: DateTime.now,
+      time_in_minutes: GoogleDirections.new("1505 Blake Street, Denver, CO", "2557 Dunkeld Place, Denver, CO").drive_time_in_minutes,
+      mileage: GoogleDirections.new("1505 Blake Street, Denver, CO", "2557 Dunkeld Place, Denver, CO").distance_in_miles
     } }
     
     it "is valid" do
@@ -105,6 +107,15 @@ RSpec.describe Ride, type: :model do
       ride = Ride.create(valid_attributes)
       
       expect(ride.cost).to eq(10)
+    end
+    
+    it "can create a geocoded pickup location" do
+      rider
+      driver
+      ride = Ride.create(valid_attributes)
+      
+      expect(ride.time_in_minutes).to eq("6")
+      expect(ride.mileage).to eq("1")
     end
   end
 end

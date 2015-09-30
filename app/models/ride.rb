@@ -22,6 +22,6 @@ class Ride < ActiveRecord::Base
   end
   
   def cost
-    ((((self.dropoff_time - self.pickup_time) / 60) / 3 ) * 2 ).round(2)
+    (((self.dropoff_time - self.pickup_time) / 180 ) * 2 ).round(2)
   end
 end
